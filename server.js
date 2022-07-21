@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Routes
+app.get('/', (req, res) => res.send('Books Management API'));
 app.use('/api/admin', admin)
 
 app.listen(3000, () => {

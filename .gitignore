@@ -1,3 +1,9 @@
 # Project exclude paths
 /node_modules/
 .env
+/.idea/.gitignore
+/.idea/books-management-api.iml
+/.idea/jsLibraryMappings.xml
+/.idea/modules.xml
+/package-lock.json
+/.idea/vcs.xml
