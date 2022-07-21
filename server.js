@@ -5,6 +5,7 @@ const connectDB = require("./db/db");
 const admin = require('./routes/admin/admin');
 require('dotenv').config();
 
+
 const app = express();
 
 //Middleware
@@ -15,8 +16,8 @@ app.use(cors());
 app.get('/', (req, res) => res.send('Books Management API'));
 app.use('/api/admin', admin)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
     if (connectDB()) {
-        console.log('Server is running on port 3000');
+        console.log('Server is running');
     }
 })
