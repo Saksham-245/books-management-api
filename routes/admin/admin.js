@@ -1,7 +1,6 @@
 const {signUp,login,createBook,listAllBooks,deleteBook,addCategory} = require("../../controllers/admin/admin");
 const router = require('express').Router();
 
-router.post('/signup', signUp);
 router.post('/login', login);
 router.post('/create-book/', createBook);
 router.get('/get-books/',listAllBooks);
