@@ -68,7 +68,7 @@ const createBook = async (req, res) => {
 		await book
 			.save()
 			.then((book) => {
-				res.status(200).json({
+				res.status(201).json({
 					message: 'Book created successfully',
 					book,
 				});
