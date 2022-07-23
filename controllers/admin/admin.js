@@ -3,46 +3,6 @@ const User = require('../../models/Users');
 const Book = require('../../models/Books');
 const Category = require('../../models/Category');
 
-const signUp = (req,res) => {
-    const {name,email,password,confirmPassword,image} = req.body;
-
-    try {
-        if(!name || !email || !password || !confirmPassword || !image) {
-            return res.status(400).json({
-                message: 'Please fill all the fields'
-            });
-        }
-
-        if (password !== confirmPassword) {
-            return res.status(400).json({
-                message: 'Passwords do not match'
-            });
-        }
-
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(password,salt);
-
-        const user = new User({
-            name,
-            email,
-            password: hash,
-            image
-        });
-
-        user.save()
-            .then(() => {
-                res.status(201).json({
-                    message: 'User created successfully',
-                    user
-                });
-            });
-    }catch (e) {
-        res.status(400).json({
-            message: e.message
-        })
-    }
-}
-
 const login = (req,res) => {
     const {email,password} = req.body;
 
@@ -71,7 +31,13 @@ const login = (req,res) => {
 
                 res.status(200).json({
                     message: 'User logged in successfully',
-                    user
+                    user : {
+                        id: user._id,
+                        name: user.name,
+                        email: user.email,
+                        image: user.image,
+                        isAdmin: user.isAdmin
+                    }
                 });
             });
     }catch (e){
@@ -166,4 +132,4 @@ const listAllBooks = async (req,res) => {
     }
 }
 
-module.exports = {signUp,login,createBook,deleteBook,listAllBooks,addCategory};
+module.exports = {login,createBook,deleteBook,listAllBooks,addCategory};
