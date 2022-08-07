@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {Schema } = mongoose;
 
 const UserSchema = new Schema({
-    name: {
+    fullName: {
         type: String,
         required: true
     },
@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     },
     gender: {
         type: String,
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true
     }
 });
 
